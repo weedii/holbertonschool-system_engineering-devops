@@ -1,0 +1,39 @@
+1- Load Balancer (HAproxy):
+    The load balancer is added to distribute incoming traffic across the web servers (Nginx) to improve performance and ensure high availability. In this design, we are using the Round Robin distribution algorithm, which cycles through the web servers in a sequential manner, distributing the traffic equally.
+
+
+2- Web Server (Nginx):
+    The web server handles incoming HTTP requests, serves static content, and communicates with the application server to process dynamic content. Nginx is chosen as the web server software due to its high performance, scalability, and advanced features like reverse proxy and caching.
+
+
+3- Application Server:
+    The application server hosts the application code base and handles dynamic content generation. It processes requests from the web server, executes application logic, interacts with the database, and generates dynamic responses for the clients.
+
+
+4- Database (MySQL):
+    The MySQL database stores and manages the website's data. It is responsible for handling read and write operations, ensuring data consistency, and providing data integrity. In this design, a Primary-Replica (Master-Slave) cluster is employed for high availability and data redundancy.
+
+    Primary Node: The primary node is the active database instance that receives write operations (INSERT, UPDATE, DELETE). It is responsible for handling write queries, ensuring data consistency, and replicating data changes to the replica nodes.
+
+    Replica Node: The replica node(s) are passive database instances that receive replicated data from the primary node. They are read-only and serve read operations (SELECT queries). The replica nodes provide increased read scalability, fault tolerance, and can be used for load balancing read traffic.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+1- Single Points of Failure (SPOFs): In this design, there are a couple of potential SPOFs:
+
+    Load Balancer: If the load balancer fails, the web servers will not be accessible. Adding redundancy to the load balancer by configuring it in a high-availability setup or implementing a secondary load balancer would mitigate this risk.
+
+    Database: If the primary database node fails, there may be downtime until it is restored or a failover mechanism is in place. Adding additional replica nodes and implementing automatic failover mechanisms can help improve availability and mitigate this risk.
+
+
+2- Security Issues:
+
+    Lack of Firewall: Without a firewall, the infrastructure is more vulnerable to unauthorized access and attacks. Implementing a firewall to control inbound and outbound traffic and enforce security policies would enhance the security posture.
+
+    No HTTPS: Not using HTTPS means that the communication between clients and the website is not encrypted, which can expose sensitive data to interception or tampering. Enabling HTTPS by obtaining an SSL/TLS certificate and configuring the web server to use HTTPS would address this security concern.
+
+
+3- Monitoring:
+    The infrastructure lacks monitoring, which means that issues or performance bottlenecks may not be promptly identified or resolved. Implementing monitoring tools to track resource utilization, performance metrics, and system health would enable proactive monitoring and troubleshooting.
