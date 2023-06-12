@@ -1,0 +1,47 @@
+1- User Access Request:
+    When a user wants to access www.foobar.com, they enter the URL in their web browser.
+
+
+2- Domain Name and DNS:
+    The domain name (www.foobar.com) serves as a human-readable identifier for the website. It is linked to an IP address (8.8.8.8 in this case) through DNS (Domain Name System). The DNS record for the www subdomain typically points to the server that hosts the website.
+
+
+3- Server:
+    A server is a physical or virtual computer that hosts and serves the website. It handles all the components of the web infrastructure.
+
+
+4- Web Server (Nginx):
+    The web server's role is to handle incoming HTTP requests from users and respond with the requested web pages. In this infrastructure, we use Nginx as the web server software.
+
+
+5- Application Server:
+    The application server hosts the application code and processes dynamic requests. It handles the logic behind the website, generates HTML or other responses, and communicates with the database. For example, if your website is built with a PHP framework like Laravel, the application server executes PHP code and interacts with the database.
+
+
+6- Application Files:
+    The application files consist of your code base, including HTML, CSS, JavaScript, and any other files required to run your website's application. These files are stored on the server's file system.
+
+
+7- Database (MySQL):
+    The database is used to store and manage the website's data. In this case, we use MySQL as the database management system. It allows you to create, read, update, and delete data used by the application.
+
+
+8- User-Server Communication:
+    When the user requests the website, their computer sends an HTTP request to the server's IP address (8.8.8.8). The server processes the request, generates the appropriate response using the application server and database if necessary, and sends it back to the user's computer using HTTP.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+# Issues with the Infrastructure:
+
+1- Single Point of Failure (SPOF):
+    Since this infrastructure consists of a single server, it introduces a single point of failure. If the server experiences hardware or software issues, the entire website becomes unavailable.
+
+
+2- Downtime During Maintenance:
+    Performing maintenance, such as deploying new code or updating the web server, may require restarting the server or services. This can lead to temporary downtime, making the website inaccessible during the maintenance window.
+
+
+3- Limited Scalability:
+    With only one server, this infrastructure has limited scalability. If the website experiences a significant increase in traffic, the single server may not be able to handle the load efficiently, resulting in performance issues or downtime.
